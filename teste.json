@@ -1,0 +1,53 @@
+{
+    "version": "v2.1.0",
+    "args": "  --ftree --out-name ./test.tree --output ftree,network --two-level --flow-model directed",
+    "startedAt": "2022-02-20 18:28:36",
+    "completedIn": 0.047851,
+    "codelength": 1.35534,
+    "numLevels": 2,
+    "numTopModules": 1,
+    "relativeCodelengthSavings": 0,
+    "directed": true,
+    "nodes": [
+        {
+            "path": [1, 1],
+            "modules": [1],
+            "name": "2",
+            "flow": 0.471763,
+            "mec": 0.48637,
+            "id": 2
+        },
+        {
+            "path": [1, 2],
+            "modules": [1],
+            "name": "1",
+            "flow": 0.433884,
+            "mec": 0.464685,
+            "id": 1
+        },
+        {
+            "path": [1, 3],
+            "modules": [1],
+            "name": "3",
+            "flow": 0.0943526,
+            "mec": 0.129488,
+            "id": 3
+        }
+    ],
+    "modules": [
+        {
+            "path": [0],
+            "enterFlow": 0,
+            "exitFlow": 0,
+            "numEdges": 0,
+            "numChildren": 1
+        },
+        {
+            "path": [1],
+            "enterFlow": 0,
+            "exitFlow": 0,
+            "numEdges": 3,
+            "numChildren": 3
+        }
+    ]
+}

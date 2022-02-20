@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 
 
-def main():
+def main(teleportation_probability, y_shift=-0.08):
     # outputs clu, tree, ftree, newick, json, csv, network, states
     im = Infomap()
     G = nx.DiGraph()
@@ -16,9 +16,14 @@ def main():
     df = pd.read_csv('./nodelist.csv', comment='#')
     pos = dict()
     pos2 = dict()
-    for i, r in df.iterrows():
-        pos[i] = np.array([r.x, r.y])
-        pos2[i] = np.array([r.x, r.y+0.07])
+    
+    
+    for i in range(len(df)):
+        id = df.id[i]
+        x = df.x[i]
+        y = df.y[i]
+        pos[id] = np.array([x, y])
+        pos2[id] = np.array([x, y+y_shift])
 
     df = pd.read_csv('./edgelist.csv', comment='#')
     for i, r in df.iterrows():
@@ -31,9 +36,10 @@ def main():
            output=['ftree', 'network'],
            out_name="./test.tree",
            #    to_nodes=False,
-           teleportation_probability=0.15,
+           teleportation_probability=teleportation_probability,
            seed=123
            )
+    im.writeJsonTree('teste.json')
     print(f"Found {im.num_top_modules} modules with codelength: {im.codelength}")
 
     group = dict()
@@ -61,7 +67,7 @@ def main():
         total_flow += fl
         labels[i] = f"{i}"
         desc[i] = f"{fl:0.3f}"
-        color[i] = gr
+        color[i-1] = gr
     print(f'total flow = {total_flow:0.3f}')
     # edge_labels = dict()
 
@@ -83,11 +89,11 @@ def main():
     #                              label_pos=0.8, edge_labels=edge_labels)
     # # plt.axis('off')
 
-    return 0
+    return G
 
 
 if __name__ == "__main__":
-    main()
+    G = main(0.15)
 
     # %%
 # %%
