@@ -18,7 +18,7 @@ def main():
     pos2 = dict()
     for i, r in df.iterrows():
         pos[i] = np.array([r.x, r.y])
-        pos2[i] = np.array([r.x, r.y+0.14])
+        pos2[i] = np.array([r.x, r.y+0.07])
 
     df = pd.read_csv('./edgelist.csv', comment='#')
     for i, r in df.iterrows():
@@ -30,7 +30,8 @@ def main():
            ftree=True,
            output=['ftree', 'network'],
            out_name="./test.tree",
-        #    to_nodes=False,
+           #    to_nodes=False,
+           teleportation_probability=0.15,
            seed=123
            )
     print(f"Found {im.num_top_modules} modules with codelength: {im.codelength}")
