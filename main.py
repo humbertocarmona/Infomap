@@ -18,17 +18,21 @@ def main():
     pos2 = dict()
     for i, r in df.iterrows():
         pos[i] = np.array([r.x, r.y])
-        pos2[i] = np.array([r.x, r.y+0.07])
+        pos2[i] = np.array([r.x, r.y+0.14])
 
     df = pd.read_csv('./edgelist.csv', comment='#')
     for i, r in df.iterrows():
         im.add_link(r.s, r.d, weight=r.w)
         G.add_edge(r.s, r.d, weight=r.w)
 
-    im.run(flow_model="directed", 
-                 ftree=True, 
-                 output=['ftree','network'],out_name="./test.tree",
-                 use_node_weights_as_flow=False)
+    im.run(flow_model="directed",
+           two_level=True,
+           ftree=True,
+           output=['ftree', 'network'],
+           out_name="./test.tree",
+        #    to_nodes=False,
+           seed=123
+           )
     print(f"Found {im.num_top_modules} modules with codelength: {im.codelength}")
 
     group = dict()
@@ -65,13 +69,13 @@ def main():
     width = [min(w['weight'], 5) for u, v, w in G.edges(data=True)]
     nx.draw_networkx(G, pos=pos,  ax=ax,
                      node_color=color, edgecolors="k",
-                     vmin=0,vmax=3,
+                     vmin=0, vmax=3,
                      cmap='jet',
                      labels=labels,
                      width=width,
-                     edge_color = edge_color,
+                     edge_color=edge_color,
                      edge_cmap=plt.cm.jet,
-                     connectionstyle="arc3,rad=0.1")
+                     connectionstyle="arc3,rad=0.4")
     nx.draw_networkx_labels(G, pos2, labels=desc, clip_on=False)
 
     # nx.draw_networkx_edge_labels(G,pos,
