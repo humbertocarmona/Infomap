@@ -4,11 +4,12 @@
 ## Installing
 
 
-Clone into your project directory `pname` directory or `~`
+Clone into your project directory `projects-dir/pname` 
 
 ```bash
-cd projects0dir
+cd projects-dir
 git clone https://github.com/humbertocarmona.git pname
+cd pname
 python -m pip install -r requirements.txt
 ```
 you are ready to go...
