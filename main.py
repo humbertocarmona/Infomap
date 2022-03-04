@@ -52,7 +52,7 @@ def main(tau=0.15, y_shift=-0.08):
         pos[id] = np.array([x, y])
         pos2[id] = np.array([x, y + y_shift])
 
-    df = pd.DataFrame(pd.read_csv("./edgelist.csv", comment="#"))
+    df = pd.read_csv("./edgelist.csv", comment="#")
     for i, r in df.iterrows():
         im.add_link(r.s, r.d, weight=r.w)
         G.add_edge(r.s, r.d, weight=r.w)
